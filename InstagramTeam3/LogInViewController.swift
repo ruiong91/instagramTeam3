@@ -7,9 +7,30 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
+var currentUser : String?
 class LogInViewController: UIViewController {
 
+    
+    @IBOutlet weak var usernameTF: UITextField!
+    
+    @IBOutlet weak var passwordTF: UITextField!
+    
+    @IBOutlet weak var loginBtn: UIButton!{
+        didSet{
+            loginBtn.addTarget(self, action: #selector(login), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var signupBtn: UIButton!{
+        didSet{
+            signupBtn.addTarget(self, action: #selector(signup), for: .touchUpInside)
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,14 +43,44 @@ class LogInViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func login(){
+        
+        FIRAuth.auth()?.signIn(withEmail: usernameTF.text!, password: passwordTF.text!, completion: { (user, error) in
+            
+            //check if error
+            if error != nil {
+                print(error as! NSError)
+                return
+            }
+            
+            //get the user
+            self.handleUser(user: user!)
+            
+        })
+        
     }
-    */
+    
+    func signup(){
+        
+    }
+    
+    func handleUser(user: FIRUser){
+        print("user logged in")
+        loadNewsfeedPage()
+        }
+    
+    func loadSignUp(){
+        let storyboard = UIStoryboard(name: "Auth", bundle: Bundle.main)
+        let signUpPage = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController
+        navigationController?.pushViewController(signUpPage!, animated: true)
+    }
+    
+    func loadNewsfeedPage(){
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let channelPage = storyboard.instantiateViewController(withIdentifier: "NewsFeedViewController") as? NewsFeedViewController
+        
+        navigationController?.pushViewController(channelPage!, animated: true)
+    }
+    
 
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		494EBA441E519EA200BE34D9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494EBA431E519EA200BE34D9 /* User.swift */; };
 		68F575B61E4DB47100A42459 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F575B51E4DB47100A42459 /* AppDelegate.swift */; };
 		68F575B81E4DB47100A42459 /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F575B71E4DB47100A42459 /* NewsFeedViewController.swift */; };
 		68F575BB1E4DB47100A42459 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68F575B91E4DB47100A42459 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		06D79B50706362B9F073E472 /* Pods-InstagramTeam3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramTeam3.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramTeam3/Pods-InstagramTeam3.release.xcconfig"; sourceTree = "<group>"; };
 		2265F429E82D6F159D876FB5 /* Pods-InstagramTeam3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramTeam3.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramTeam3/Pods-InstagramTeam3.debug.xcconfig"; sourceTree = "<group>"; };
+		494EBA431E519EA200BE34D9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5ADCE5B88D3C60EF06DED49B /* Pods_InstagramTeam3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramTeam3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F575B21E4DB47100A42459 /* InstagramTeam3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramTeam3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F575B51E4DB47100A42459 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 		68F575CC1E4DB4D800A42459 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				494EBA431E519EA200BE34D9 /* User.swift */,
 				68F575E51E514AC500A42459 /* Post.swift */,
 			);
 			name = Models;
@@ -289,6 +292,7 @@
 				68F575B61E4DB47100A42459 /* AppDelegate.swift in Sources */,
 				68F575DF1E501E2000A42459 /* PostTableCell.swift in Sources */,
 				68F575BE1E4DB47100A42459 /* InstagramTeam3.xcdatamodeld in Sources */,
+				494EBA441E519EA200BE34D9 /* User.swift in Sources */,
 				68F575D81E4DB6A800A42459 /* ProfileViewController.swift in Sources */,
 				68F575D41E4DB62100A42459 /* LogInViewController.swift in Sources */,
 				68F575D21E4DB5DC00A42459 /* DetailsViewController.swift in Sources */,

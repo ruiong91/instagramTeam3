@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
 class User {
+    
+    var profilepicture : String?
     var id : String?
     var userID : String?
     var email : String?
@@ -26,6 +29,8 @@ class User {
         userID = dictionary["userID"] as? String
         email = dictionary["email"] as? String
         password = dictionary["password"] as? String
+        profilepicture = dictionary["profilepicture"] as? String
+        
     }
     
     

@@ -77,9 +77,9 @@ class LogInViewController: UIViewController {
     
     func loadNewsfeedPage(){
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let channelPage = storyboard.instantiateViewController(withIdentifier: "NewsFeedViewController") as? NewsFeedViewController
+        let newsFeedPage = storyboard.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController
         
-        navigationController?.pushViewController(channelPage!, animated: true)
+        navigationController?.pushViewController(newsFeedPage!, animated: true)
     }
     
 

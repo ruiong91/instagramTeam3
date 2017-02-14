@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class User {
     
@@ -16,6 +18,11 @@ class User {
     var userID : String?
     var email : String?
     var password : String?
+    var username : String?
+    
+    var dbRef : FIRDatabaseReference!
+    
+    static let currentUserID = FIRAuth.auth()?.currentUser?.uid
     
     init(withDictionary dictionary: [String : Any], index: Int) {
         id = String(index)
@@ -25,4 +32,6 @@ class User {
         profilepicture = dictionary["profilepicture"] as? String
         
     }
+    
+    
 }

@@ -7,38 +7,41 @@
 //
 
 import UIKit
+import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
 class PostViewController: UIViewController {
     
     var dbRef : FIRDatabaseReference?
+    //var currentUserID : String?
+    
     var selectedImage : UIImage?
-    var selectedImageURL : URL?
+    var selectedImageStringURL : String?
     var currentposts : [Post] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         dbRef = FIRDatabase.database().reference()
-        
+        //currentUserID = FIRAuth.auth()?.currentUser?.uid
         captionTextView.text = "Insert caption here..."
         textViewDidBeginEditing(captionTextView)
+        getUsername()
+        
     }
     
     //MARK: functions
     func post () {
-        let postIndex = currentposts.count
-        var postDictionary : [String: Any] = ["senderID" : "setID", "senderName" : "setName", "image": selectedImageURL]
+        
+        let postIndex = NewsFeedViewController.posts.count
+        let timestamp = String(Date.timeIntervalSinceReferenceDate)
+        var postDictionary : [String: Any] = ["senderID" : User.currentUserID, "senderName" : NewsFeedViewController.currentUserName, "imageStringURL": selectedImageStringURL, "dateTime" : timestamp]
         
         if let caption = captionTextView.text{
             postDictionary["caption"] = caption
         } else {
             postDictionary["caption"] = ""
-        }
-        
-        if selectedImage != nil {
-            uploadImage(image: selectedImage!)
         }
         
         dbRef?.child("newsFeed").child(String(postIndex)).setValue(postDictionary)
@@ -48,6 +51,14 @@ class PostViewController: UIViewController {
     
     func clearTextView(textView : UITextView) {
         textView.text = ""
+    }
+    
+    func getUsername() {
+        dbRef?.child("users").child(User.currentUserID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let username = value?["userName"] as? String ?? ""
+            NewsFeedViewController.currentUserName = username
+        })
     }
     
     //MARK: Outlets
@@ -94,7 +105,9 @@ extension PostViewController : UIImagePickerControllerDelegate, UINavigationCont
             
             selectedImage = image
             imagePreview.image = selectedImage
+            uploadImage(image: selectedImage!)
             self.dismiss(animated: true, completion: nil)
+            
         }
     }
     
@@ -111,7 +124,7 @@ extension PostViewController : UIImagePickerControllerDelegate, UINavigationCont
         storageRef.child(imageName).put(imageData, metadata: metadata) { (meta, error) in
             
             if let downloadUrl = meta?.downloadURL() {
-                self.selectedImageURL = downloadUrl
+                self.selectedImageStringURL = String(describing: downloadUrl)
             } else {
                 //error
             }
@@ -128,3 +141,5 @@ extension PostViewController : UITextViewDelegate {
     }
     
 }
+
+//why cant i call upload image when post. wont i save too many spam image?

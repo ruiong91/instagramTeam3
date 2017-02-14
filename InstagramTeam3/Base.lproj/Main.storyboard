@@ -131,10 +131,11 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Z9j-8R-VtI">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="IFu-ij-Aq6" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="IFu-ij-Aq6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="2KI-jt-iCz"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Hvn-wX-Se1">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>

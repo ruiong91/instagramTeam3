@@ -14,7 +14,6 @@ import FirebaseDatabase
 class PostViewController: UIViewController {
     
     var dbRef : FIRDatabaseReference?
-    //var currentUserID : String?
     
     var selectedImage : UIImage?
     var selectedImageStringURL : String?
@@ -27,16 +26,15 @@ class PostViewController: UIViewController {
         //currentUserID = FIRAuth.auth()?.currentUser?.uid
         captionTextView.text = "Insert caption here..."
         textViewDidBeginEditing(captionTextView)
-        getUsername()
         
     }
     
     //MARK: functions
     func post () {
         
-        let postIndex = NewsFeedViewController.posts.count
+        
         let timestamp = String(Date.timeIntervalSinceReferenceDate)
-        var postDictionary : [String: Any] = ["senderID" : User.currentUserID, "senderName" : NewsFeedViewController.currentUserName, "imageStringURL": selectedImageStringURL, "dateTime" : timestamp]
+        var postDictionary : [String: Any] = ["senderID" : User.current.userID, "senderName" : User.current.username, "imageStringURL": selectedImageStringURL, "dateTime" : timestamp]
         
         if let caption = captionTextView.text{
             postDictionary["caption"] = caption
@@ -44,7 +42,15 @@ class PostViewController: UIViewController {
             postDictionary["caption"] = ""
         }
         
-        dbRef?.child("newsFeed").child(String(postIndex)).setValue(postDictionary)
+//        dbRef?.child("newsFeed").child(String(postIndex)).setValue(postDictionary)
+        dbRef?.child("newsFeed").childByAutoId().setValue(postDictionary)
+        
+        
+//        dbRef?.observeSingleEvent(of: .childAdded, with: { (snapshot) in
+//            snapshot.childrenCount
+//        })
+        
+//        dbRef?.queryEqual(toValue: "newsFeed")
         
         print(postDictionary)
     }
@@ -53,13 +59,7 @@ class PostViewController: UIViewController {
         textView.text = ""
     }
     
-    func getUsername() {
-        dbRef?.child("users").child(User.currentUserID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let username = value?["userName"] as? String ?? ""
-            NewsFeedViewController.currentUserName = username
-        })
-    }
+    
     
     //MARK: Outlets
     @IBOutlet weak var openLibraryBtn: UIButton!{

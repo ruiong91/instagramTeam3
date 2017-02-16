@@ -65,6 +65,10 @@ class LogInViewController: UIViewController {
     }
     
     func handleUser(user: FIRUser){
+        
+        User.current.userID = user.uid
+        User.current.fetchUserInformationViaID()
+        
         print("user logged in")
         loadNewsfeedPage()
         }

@@ -10,6 +10,10 @@ import UIKit
 
 class CommentTableCell: UITableViewCell {
 
+    
+    static let cellIdentifier = "CommentTableCell"
+    static let cellNib = UINib(nibName: "CommentTableCell", bundle: Bundle.main)
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +25,5 @@ class CommentTableCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBOutlet weak var commentLabel: UILabel!
 }

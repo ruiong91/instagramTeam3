@@ -10,9 +10,12 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class NewsFeedViewController: UIViewController {
+class NewsFeedViewController: UIViewController, CommentPageDelegate {
+    
     
     var dbRef : FIRDatabaseReference?
+    
+    
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     var datatask : URLSessionDataTask?
     lazy var dateFormater : DateFormatter = {
@@ -21,9 +24,9 @@ class NewsFeedViewController: UIViewController {
         return _dateFormatter
     }()
     
-    static var posts : [Post] = []
-    static var currentUserName = ""
+    var posts : [Post] = []
     
+    //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +35,8 @@ class NewsFeedViewController: UIViewController {
         
         newsFeedTableView.delegate = self
         newsFeedTableView.dataSource = self
+       
+        
         
         //register custom cell
         newsFeedTableView.register(PostTableCell.cellNib,forCellReuseIdentifier: PostTableCell.cellIdentifier)
@@ -49,11 +54,26 @@ class NewsFeedViewController: UIViewController {
         dbRef?.child("newsFeed").observe(.childAdded, with: { (snapshot) in
             guard let value = snapshot.value as? [String: Any] else {return}
             let newPost = Post(withDictionary: value)
-            NewsFeedViewController.posts.append(newPost)
+            newPost.postId = snapshot.key
+            self.posts.append(newPost)
             self.newsFeedTableView.reloadData()
             
-            dump(NewsFeedViewController.posts)
+            dump(self.posts)
         })
+    }
+    
+    func presentCommentPage(indexPath: IndexPath?){
+        guard let validIndexPath = indexPath else { return }
+        let post = posts[validIndexPath.row]
+        
+        let commentPage = storyboard?.instantiateViewController(withIdentifier: "CommentsViewController") as? CommentsViewController
+        navigationController?.pushViewController(commentPage!, animated: true)
+        
+        commentPage?.currentPostID = post.postId
+    }
+    
+    func identifyCurrentPost(){
+        
     }
     
 //    func getSenderName() {
@@ -64,20 +84,24 @@ class NewsFeedViewController: UIViewController {
 //        })
 //    }
     
+    //MARK: Outlets
     @IBOutlet weak var newsFeedTableView: UITableView!
     
 }
 
+//MARK: Extension
 extension NewsFeedViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NewsFeedViewController.posts.count
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableCell.cellIdentifier, for: indexPath) as? PostTableCell else {return UITableViewCell()}
         
-        let post = NewsFeedViewController.posts[indexPath.row]
+        cell.delegate = self
+        cell.indexPath = indexPath
+        let post = posts[indexPath.row]
         
         if let timestamp = post.dateTime {
             cell.timestampLabel.text = dateFormater.string(from: Date(timeIntervalSinceReferenceDate: timestamp))

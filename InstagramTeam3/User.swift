@@ -13,25 +13,34 @@ import FirebaseDatabase
 
 class User {
     
-    var profilepicture : String?
-    var id : String?
     var userID : String?
+    var username : String?
     var email : String?
     var password : String?
-    var username : String?
+    var profilepicture : String?
     
-    var dbRef : FIRDatabaseReference!
     
-    static let currentUserID = FIRAuth.auth()?.currentUser?.uid
     
-    init(withDictionary dictionary: [String : Any], index: Int) {
-        id = String(index)
+    static var current : User = User()
+    init(){}
+    
+    init(withDictionary dictionary: [String : Any]) {
         userID = dictionary["userID"] as? String
+        username = dictionary["username"] as? String
         email = dictionary["email"] as? String
         password = dictionary["password"] as? String
-        profilepicture = dictionary["profilepicture"] as? String
-        
+        profilepicture = dictionary["ppImageURL"] as? String
     }
     
     
+    func fetchUserInformationViaID() {
+        FIRDatabase.database().reference().child("users").child(userID!).observe(.value, with: { (snapshot) in
+            guard let value = snapshot.value as? [String: Any] else {return}
+            let newUser = User(withDictionary: value)
+            newUser.userID = snapshot.key
+            
+            User.current = newUser
+
+        })
+    }
 }

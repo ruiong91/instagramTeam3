@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import FirebaseDatabase
+
+protocol CommentPageDelegate : class {
+    func presentCommentPage(indexPath: IndexPath?)
+}
 
 class PostTableCell: UITableViewCell {
+    
+    weak var delegate : CommentPageDelegate?
+    var indexPath : IndexPath?
     
     static let cellIdentifier = "PostTableCell"
     static let cellNib = UINib(nibName: "PostTableCell", bundle: Bundle.main)
@@ -23,14 +31,31 @@ class PostTableCell: UITableViewCell {
 
            }
     
+    func handleComment(){
+        delegate?.presentCommentPage(indexPath: indexPath)
+    }
     
+    func like(){
+        
+    }
+    
+    @IBOutlet weak var commentBtn: UIButton!{
+        didSet{
+            commentBtn.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var likeBtn: UIButton!{
+        didSet{
+            like()
+        }
+    }
     
     
     @IBOutlet weak var senderProfileImage: UIImageView!
     @IBOutlet weak var senderName: UILabel!
+
     
-    @IBOutlet weak var commentBtn: UIButton!
-    @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var noOfLikesLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!

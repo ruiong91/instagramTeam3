@@ -15,18 +15,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="557"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="556.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="556"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xfF-rg-vIa">
-                        <rect key="frame" x="8" y="8.5" width="50" height="50"/>
+                        <rect key="frame" x="8" y="8" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="mE2-cF-Bys"/>
                             <constraint firstAttribute="width" constant="50" id="olC-OO-p1e"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yxi-BI-HM8">
-                        <rect key="frame" x="66" y="18.5" width="160" height="30"/>
+                        <rect key="frame" x="66" y="18" width="160" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="160" id="P7o-Td-HaK"/>
                             <constraint firstAttribute="height" constant="30" id="kBV-pw-BKD"/>
@@ -36,26 +36,26 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7v-DY-22M">
-                        <rect key="frame" x="282" y="18.5" width="30" height="30"/>
+                        <rect key="frame" x="282" y="18" width="30" height="30"/>
                         <state key="normal" title="..."/>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1TT-5c-Cg6">
-                        <rect key="frame" x="0.0" y="66.5" width="320" height="335.5"/>
+                        <rect key="frame" x="0.0" y="66" width="320" height="335.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="320" id="scE-Iq-gIb"/>
                             <constraint firstAttribute="height" constant="335.5" id="ugd-vg-8uB"/>
                         </constraints>
                     </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wv4-63-Qu0">
+                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wv4-63-Qu0">
                         <rect key="frame" x="8" y="410" width="80" height="30"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hq9-Xm-os6">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbe-3a-djf">
                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="7ah-JB-4lg"/>
-                                    <constraint firstAttribute="height" constant="30" id="eKi-bX-omu"/>
+                                    <constraint firstAttribute="height" constant="30" id="9DN-0H-PzC"/>
+                                    <constraint firstAttribute="width" constant="30" id="hVp-Mo-BJ6"/>
                                 </constraints>
-                                <state key="normal" title="Likes"/>
+                                <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35T-et-Pf3">
                                 <rect key="frame" x="50" y="0.0" width="30" height="30"/>
@@ -68,7 +68,7 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no. likes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbi-JT-tbI">
-                        <rect key="frame" x="8" y="448.5" width="304" height="30"/>
+                        <rect key="frame" x="8" y="448" width="304" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="304" id="MIb-lw-sCK"/>
                             <constraint firstAttribute="height" constant="30" id="MQT-SC-2hv"/>
@@ -78,7 +78,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name. Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swy-bp-e2i">
-                        <rect key="frame" x="8" y="486" width="114" height="30"/>
+                        <rect key="frame" x="8" y="485.5" width="114" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="x0V-7S-6dV"/>
                         </constraints>
@@ -87,7 +87,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G16-xc-Ly3">
-                        <rect key="frame" x="8" y="523" width="304" height="20"/>
+                        <rect key="frame" x="8" y="522.5" width="304" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="84N-OE-IUj"/>
                             <constraint firstAttribute="width" constant="304" id="KKH-As-38N"/>
@@ -125,7 +125,7 @@
                 <outlet property="captionLabel" destination="swy-bp-e2i" id="7UT-zD-MKr"/>
                 <outlet property="commentBtn" destination="35T-et-Pf3" id="4M7-8I-Ug0"/>
                 <outlet property="editPostBtn" destination="E7v-DY-22M" id="wBb-hq-kLl"/>
-                <outlet property="likeBtn" destination="hq9-Xm-os6" id="piZ-JG-6R3"/>
+                <outlet property="likeBtn" destination="kbe-3a-djf" id="Fup-Yr-iwx"/>
                 <outlet property="noOfLikesLabel" destination="cbi-JT-tbI" id="6B2-CU-UEp"/>
                 <outlet property="postImage" destination="1TT-5c-Cg6" id="Aka-VH-8QX"/>
                 <outlet property="senderName" destination="Yxi-BI-HM8" id="ACo-DK-sUl"/>

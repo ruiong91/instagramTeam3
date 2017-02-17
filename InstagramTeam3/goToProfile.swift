@@ -1,8 +1,8 @@
 //
-//  ProfileViewController.swift
+//  goToProfile.swift
 //  InstagramTeam3
 //
-//  Created by Rui Ong on 10/02/2017.
+//  Created by Othman Mashaab on 17/02/2017.
 //  Copyright © 2017 Rui Ong. All rights reserved.
 //
 
@@ -12,15 +12,16 @@ import FirebaseStorage
 import FirebaseDatabase
 import FirebaseAuth
 
-class ProfileViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate{
-
-    @IBOutlet weak var avatarImage: UIImageView!
-    @IBOutlet weak var followingLabel: UILabel!
+class goToProfileViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate{
+    
+    
     @IBOutlet weak var followersLabel: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var postsLabel: UILabel!
-    @IBOutlet weak var followBtn: UIButton!
+    @IBOutlet weak var pictureContainer: UIImageView!
+    
     @IBOutlet weak var usernameLabel: UILabel!
-
+    
     var Users: NSDictionary?
     var dbRef : FIRDatabaseReference!
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
@@ -30,30 +31,29 @@ class ProfileViewController: UIViewController,UICollectionViewDataSource, UIColl
     var selectedImageStringURL : String?
     var currentposts : [Post] = []
     var currentUser = ""
-
     
-            //dbRef?.child("users").child(User.currentUserID!)
     
-        
+    //dbRef?.child("users").child(User.currentUserID!)
+    
+    
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         dbRef = FIRDatabase.database().reference()
+        dbRef = FIRDatabase.database().reference()
+        //        avatarImage.image = UIImage(named: Users?["profilepicture"] as! String!)
+        //   collectionView.dataSource = self
+        //   collectionView.backgroundColor = UIColor.white
         
-//        avatarImage.image = UIImage(named: Users?["profilepicture"] as! String!)
-     //   collectionView.dataSource = self
-     //   collectionView.backgroundColor = UIColor.white
-       
         if let userID = FIRAuth.auth()?.currentUser?.uid {
             dbRef.child("users").child(userID).observeSingleEvent(of: .value, with: {(snapshot) in
-            let dictionary = snapshot.value as? NSDictionary
+                let dictionary = snapshot.value as? NSDictionary
                 
-            let username = dictionary?["username"] as? String?; "username"
+               let username = dictionary?["username"] as? String?; "username"
                 
                 NewsFeedViewController.currentUserName = "username"
-
+                
                 if let profilePicURL = dictionary?["ppImageURL"]as? String{
                     let url = URL(string: profilePicURL)
                     URLSession.shared.dataTask(with: url!, completionHandler:{ (data, response, error) in
@@ -62,20 +62,23 @@ class ProfileViewController: UIViewController,UICollectionViewDataSource, UIColl
                             return
                         }
                         DispatchQueue.main.async {
-                            self.avatarImage.image = UIImage(data: data!)
+                            
+                            self.title = "Welcome\((self.Users!["username"]!))!"
+                            self.pictureContainer.image = UIImage(data: data!)
                         }
                     }).resume()
                 }
                 
                 self.usernameLabel.text=username!
-//                self.postsLabel.text = "\(username.posts.count)"
-//                self.followerLabel.text = "\(profileUser.followers.count)"
-//                self.followLabel.text = "\(profileUser.following.count)"
+                
+                //self.postsLabel.text = "\(username.posts.count)"
+                //                self.followerLabel.text = "\(profileUser.followers.count)"
+                //                self.followLabel.text = "\(profileUser.following.count)"
                 
             }) {(error) in
                 print(error.localizedDescription)
                 return
-        
+                
             }
             
         }
@@ -83,7 +86,7 @@ class ProfileViewController: UIViewController,UICollectionViewDataSource, UIColl
     }
     
     
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return 0
     }
@@ -105,5 +108,5 @@ class ProfileViewController: UIViewController,UICollectionViewDataSource, UIColl
     }
     
     
-
+    
 }

@@ -12,6 +12,17 @@ import FirebaseDatabase
 
 class NewsFeedViewController: UIViewController {
     
+    
+  
+//   
+//    func goToProfile(){
+//        
+//        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+//            let controller = storyboard.instantiateViewController(withIdentifier: "profileSB") as UIViewController
+//        self.present(controller, animated: true, completion: nil)
+//        
+//    }
+    
     var dbRef : FIRDatabaseReference?
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     var datatask : URLSessionDataTask?
@@ -24,8 +35,11 @@ class NewsFeedViewController: UIViewController {
     static var posts : [Post] = []
     static var currentUserName = ""
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         dbRef = FIRDatabase.database().reference()
         observePosts()
@@ -116,7 +130,11 @@ extension NewsFeedViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
+    
+    
 }
+
+
 
 //why lazy var?
 //how to call senderName via uid

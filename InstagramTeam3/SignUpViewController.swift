@@ -29,7 +29,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     // let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     //  var dataTask: URLSessionDataTask?
-        
+    
     @IBOutlet weak var signupBtn: UIButton!{
         didSet{
             signupBtn.addTarget(self, action: #selector(signUp), for: .touchUpInside)

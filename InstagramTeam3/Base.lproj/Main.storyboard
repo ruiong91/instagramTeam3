@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--NewsFeed-->
+        <!--News Feed View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="NewsFeedViewController" id="BYZ-38-t0r" customClass="NewsFeedViewController" customModule="InstagramTeam3" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,7 +30,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="NewsFeed" id="uYs-m3-Nqe"/>
+                    <tabBarItem key="tabBarItem" title="" selectedImage="newsFeed" id="uYs-m3-Nqe">
+                        <inset key="imageInsets" minX="36" minY="46" maxX="36" maxY="27"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="IYz-oc-RJ8"/>
                     <connections>
                         <outlet property="newsFeedTableView" destination="Nse-Je-66v" id="mCP-Sr-Rew"/>
@@ -99,7 +101,7 @@
                             <constraint firstItem="27H-O9-EgJ" firstAttribute="top" secondItem="iPP-76-4X5" secondAttribute="bottom" constant="30" id="tl1-XX-Xv0"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Post" id="qKy-Ep-FJU"/>
+                    <tabBarItem key="tabBarItem" title="Post" image="post" selectedImage="post" id="qKy-Ep-FJU"/>
                     <connections>
                         <outlet property="captionTextView" destination="bcf-Bk-3rf" id="U7A-Dg-b2c"/>
                         <outlet property="imagePreview" destination="27H-O9-EgJ" id="r2h-e0-Hhx"/>
@@ -206,6 +208,10 @@
             <point key="canvasLocation" x="3194" y="-916"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="newsFeed" width="200" height="200"/>
+        <image name="post" width="16" height="16"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="XNC-fT-wix"/>
     </inferredMetricsTieBreakers>

@@ -13,7 +13,7 @@ import FirebaseDatabase
 class NewsFeedViewController: UIViewController, CommentPageDelegate {
     
     
-    var dbRef : FIRDatabaseReference?
+    var dbRef : FIRDatabaseReference!
     
     
     let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
@@ -25,6 +25,10 @@ class NewsFeedViewController: UIViewController, CommentPageDelegate {
     }()
     
     var posts : [Post] = []
+    var currentPost : Post?
+    var currentPostID : String?
+    var likedBy : [String] = []
+    var likedByString : String = "Liked by "
     
     //MARK: Functions
     override func viewDidLoad() {
@@ -35,7 +39,7 @@ class NewsFeedViewController: UIViewController, CommentPageDelegate {
         
         newsFeedTableView.delegate = self
         newsFeedTableView.dataSource = self
-       
+        
         
         
         //register custom cell
@@ -58,10 +62,12 @@ class NewsFeedViewController: UIViewController, CommentPageDelegate {
             self.posts.append(newPost)
             self.newsFeedTableView.reloadData()
             
+            
             dump(self.posts)
         })
     }
     
+    //MARK: Likes/Comment func
     func presentCommentPage(indexPath: IndexPath?){
         guard let validIndexPath = indexPath else { return }
         let post = posts[validIndexPath.row]
@@ -72,17 +78,55 @@ class NewsFeedViewController: UIViewController, CommentPageDelegate {
         commentPage?.currentPostID = post.postId
     }
     
-    func identifyCurrentPost(){
+    func saveLikes(btn : UIButton){
+        let unlikedImage = UIImage(named: "like")
+        let likedImage = UIImage(named: "liked")
         
+        var likedUserDictionary : [String: String] = ["likedUserName" : User.current.username!, "likedUserID" : User.current.userID!]
+        
+        if btn.image(for: .normal) != likedImage {
+            btn.setImage(likedImage, for: .normal)
+            dbRef?.child("newsFeed").child(currentPostID!).child("likedBy").child(User.current.userID!).setValue(User.current.username)
+        } else {
+            btn.setImage(unlikedImage, for: .normal)
+            dbRef?.child("newsFeed").child(currentPostID!).child("likedBy").child(User.current.userID!).removeValue()
+        }
+        newsFeedTableView.reloadData()
     }
     
-//    func getSenderName() {
-//            dbRef?.child("users").child(!).observeSingleEvent(of: .value, with: { (snapshot) in
-//            let value = snapshot.value as? NSDictionary
-//            let username = value?["userName"] as? String ?? ""
-//            NewsFeedViewController.currentUserName = username
-//        })
-//    }
+    //    func reloadCell(indexPath : IndexPath){
+    //        newsFeedTableView.reloadRows(at: [indexPath], with: .automatic)
+    //    }
+    //
+    //    func observeLikes(){
+    //        dbRef.child("newsFeed").child(currentPostID!).child("likedBy").observe(.childAdded, with: { (snapshot) in
+    //
+    //            //does not append??
+    //            if let name = snapshot.value as? String {
+    //                self.likedBy.append(name)
+    //                print(self.likedBy)
+    //            }
+    //        })
+    //    }
+    
+    //    func compileLikedUsers (label: UILabel){
+    //        if likedBy.count == 0 {
+    //            likedByString = "0 likes"
+    //            print(likedByString)
+    //        } else {
+    //            for string in likedBy {
+    //                if likedBy.count < 5 {
+    //                    likedByString.append(string)
+    //                    likedByString.append(", ")
+    //                } else {
+    //                    likedByString = "\(likedBy.count) likes"
+    //                }
+    //            }
+    //        }
+    //
+    //        label.text = likedByString
+    //    }
+    
     
     //MARK: Outlets
     @IBOutlet weak var newsFeedTableView: UITableView!
@@ -102,6 +146,7 @@ extension NewsFeedViewController: UITableViewDataSource, UITableViewDelegate {
         cell.delegate = self
         cell.indexPath = indexPath
         let post = posts[indexPath.row]
+        currentPost = post
         
         if let timestamp = post.dateTime {
             cell.timestampLabel.text = dateFormater.string(from: Date(timeIntervalSinceReferenceDate: timestamp))
@@ -133,10 +178,12 @@ extension NewsFeedViewController: UITableViewDataSource, UITableViewDelegate {
         let boldName = NSMutableAttributedString(string: name!, attributes: bold)
         let normalCaption = NSMutableAttributedString(string: "  \(post.caption ?? "")")
         boldName.append(normalCaption)
-    
+        
         cell.senderName.text = post.senderName
         cell.captionLabel.attributedText = boldName
+        currentPostID = post.postId
         
+        cell.noOfLikesLabel.text = post.numberOfLikes()
         
         return cell
     }

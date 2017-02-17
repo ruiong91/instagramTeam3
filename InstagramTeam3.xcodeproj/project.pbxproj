@@ -28,6 +28,7 @@
 		68F575E61E514AC500A42459 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F575E51E514AC500A42459 /* Post.swift */; };
 		68F575E81E51633200A42459 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F575E71E51633200A42459 /* PostViewController.swift */; };
 		68F575EA1E531EBE00A42459 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F575E91E531EBE00A42459 /* Comment.swift */; };
+		68F575EC1E55B0B100A42459 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F575EB1E55B0B100A42459 /* Like.swift */; };
 		7385C73E83E2770139843320 /* Pods_InstagramTeam3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ADCE5B88D3C60EF06DED49B /* Pods_InstagramTeam3.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		68F575E51E514AC500A42459 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		68F575E71E51633200A42459 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		68F575E91E531EBE00A42459 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		68F575EB1E55B0B100A42459 /* Like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				494EBA431E519EA200BE34D9 /* User.swift */,
 				68F575E51E514AC500A42459 /* Post.swift */,
 				68F575E91E531EBE00A42459 /* Comment.swift */,
+				68F575EB1E55B0B100A42459 /* Like.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				68F575BE1E4DB47100A42459 /* InstagramTeam3.xcdatamodeld in Sources */,
 				494EBA441E519EA200BE34D9 /* User.swift in Sources */,
 				68F575D81E4DB6A800A42459 /* ProfileViewController.swift in Sources */,
+				68F575EC1E55B0B100A42459 /* Like.swift in Sources */,
 				68F575EA1E531EBE00A42459 /* Comment.swift in Sources */,
 				68F575D41E4DB62100A42459 /* LogInViewController.swift in Sources */,
 				68F575D21E4DB5DC00A42459 /* CommentsViewController.swift in Sources */,

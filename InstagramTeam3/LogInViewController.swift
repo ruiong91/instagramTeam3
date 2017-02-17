@@ -14,9 +14,19 @@ var currentUser : String?
 class LogInViewController: UIViewController {
 
     
-    @IBOutlet weak var usernameTF: UITextField!
+    @IBOutlet weak var usernameTF: UITextField!{
+        didSet{
+            usernameTF.text = "ong@hi.hi"
+        }
+    }
+
     
-    @IBOutlet weak var passwordTF: UITextField!
+    @IBOutlet weak var passwordTF: UITextField!{
+        didSet{
+           passwordTF.text = "123456"
+        }
+    }
+
     
     @IBOutlet weak var loginBtn: UIButton!{
         didSet{
